@@ -12,4 +12,38 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular
+//= require angular-resource
+//= require angular-route
+//= require angular-animate
 //= require_tree .
+
+var restkastenApp = angular.module('restkastenApp', [
+    'ngRoute',
+    'ngAnimate',
+    'restkastenControllers',
+    'restkastenServices'
+]);
+
+restkastenApp.config(function($httpProvider){
+    // authToken = $("meta[name=\"csrf-token\"]").attr("content");
+    // $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken;
+});
+
+restkastenApp.config(['$routeProvider', '$locationProvider',
+    function($routeProvider, $locationProvider) {
+        $locationProvider.html5Mode(true);
+        $routeProvider.
+            when('/users', {
+                templateUrl: '/template/userlist',
+                controller: 'UserListCtrl'
+            }).
+            when('/users/:userId', {
+                templateUrl: '/template/user',
+                controller: 'UserCtrl'
+            }).
+            otherwise({
+                redirectTo: '/users'
+            });
+    }
+]);

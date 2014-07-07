@@ -1,0 +1,14 @@
+<h1>details for {{user.name}}</h1>
+RFID: {{user.rfid}}
+
+<h2>access objects</h2>
+<div class="row">
+  <div class="col-md-6">
+    <h3>disabled</h3>
+    <button class="btn btn-default btn-block" ng-repeat="accessObject in filteredAccessObjects()" ng-click="addToUserAccessObjects(accessObject)">{{accessObject.name}}</button>
+  </div>
+  <div class="col-md-6">
+    <h3>enabled</h3>
+    <button class="btn btn-primary btn-block" ng-repeat="accessObject in userAccessObjects" ng-click="removeFromUserAccessObjects(accessObject)">{{accessObject.name}}</button>
+  </div>
+</div>

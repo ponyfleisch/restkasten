@@ -1,0 +1,24 @@
+<h1>User List</h1>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Admin</th>
+    <th>Actions</th>
+  </tr>
+  <tr ng-repeat="user in users">
+    <td>
+      {{user.name}}
+    </td>
+    <td>
+      <div ng-if="user.admin == true">
+        <button class="btn btn-danger" ng-click="user.admin = false; user.$save()">de-admin</button>
+      </div>
+      <div ng-if="user.admin == false">
+        <button class="btn btn-success" ng-click="user.admin = true; user.$save()">make admin</button>
+      </div>
+    </td>
+    <td>
+      <a ng-href="/users/{{user.id}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+    </td>
+  </tr>
+</table>
