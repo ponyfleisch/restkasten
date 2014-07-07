@@ -1,8 +1,4 @@
-class UsersController < ApplicationController
-  before_filter :set_default_response_format
-  skip_before_action :verify_authenticity_token
-
-
+class UsersController < RestController
   def index
     @users = User.all
   end
@@ -23,10 +19,6 @@ class UsersController < ApplicationController
 
 
   private
-  def set_default_response_format
-    request.format = :json
-  end
-
   def user_params
     params.permit(:name, :password)
   end
