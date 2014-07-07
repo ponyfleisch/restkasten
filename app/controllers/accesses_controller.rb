@@ -16,6 +16,8 @@ class AccessesController < RestController
   end
 
   def create
+    raise "No access" unless @user.access_objects.include?(AccessObject.find(params[:access_object_id]))
+
     @access = Access.new(access_params)
 
     @access.user = @user
@@ -29,7 +31,7 @@ class AccessesController < RestController
 
   private
   def access_params
-    params.permit(:access_object)
+    params.permit(:access_object_id)
   end
 
 
