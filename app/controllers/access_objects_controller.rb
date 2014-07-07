@@ -4,7 +4,7 @@ class AccessObjectsController < RestController
   before_action :set_current_user
 
   def index
-    @access_objects = @user.access_objects
+    @access_objects = AccessObject.all
   end
 
   def show
@@ -23,7 +23,7 @@ class AccessObjectsController < RestController
 
   private
   def access_object_params
-    params.permit(:amount)
+    params.permit(:name)
   end
 
 

@@ -1,20 +1,25 @@
 Rails.application.routes.draw do
-  resources :users do
-    resources :accesses, :purchases
-    post 'access_objects', :to => "users#add_access_object", :as => :add_access_object_to
-    get 'access_objects', :to => "users#access_objects", :as => :user_access_objects
-    delete 'access_objects/:id', :to => "users#remove_access_object", :as => :remove_user_access_object
-    get 'access_objects/:id', :to => "users#access_object", :as => :user_access_object
-  end
+
+  scope :api do
+    resources :users do
+      resources :accesses, :purchases
+      post 'access_objects', :to => "users#add_access_object", :as => :add_access_object_to
+      get 'access_objects', :to => "users#access_objects", :as => :user_access_objects
+      delete 'access_objects/:id', :to => "users#remove_access_object", :as => :remove_user_access_object
+      get 'access_objects/:id', :to => "users#access_object", :as => :user_access_object
+    end
 
 
-  scope :me do
-    get '/' => 'users#show_me'
-    resources :accesses, :purchases
-    post 'access_objects', :to => "users#add_access_object", :as => :add_access_object_to
-    get 'access_objects', :to => "users#access_objects", :as => :user_access_objects
-    delete 'access_objects/:id', :to => "users#remove_access_object", :as => :remove_user_access_object
-    get 'access_objects/:id', :to => "users#access_object", :as => :user_access_object
+    scope :me do
+      get '/' => 'users#show_me'
+      resources :accesses, :purchases
+      post 'access_objects', :to => "users#add_access_object", :as => :add_access_object_to
+      get 'access_objects', :to => "users#access_objects", :as => :user_access_objects
+      delete 'access_objects/:id', :to => "users#remove_access_object", :as => :remove_user_access_object
+      get 'access_objects/:id', :to => "users#access_object", :as => :user_access_object
+    end
+
+    resources :access_objects
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
