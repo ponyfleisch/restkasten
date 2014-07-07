@@ -12,3 +12,16 @@ RFID: {{user.rfid}}
     <button class="btn btn-primary btn-block" ng-repeat="accessObject in userAccessObjects" ng-click="removeFromUserAccessObjects(accessObject)">{{accessObject.name}}</button>
   </div>
 </div>
+
+<h2>access log</h2>
+
+<table class="table table-striped">
+  <tr>
+    <th>object</th>
+    <th>time</th>
+  </tr>
+  <tr ng-repeat="access in accesses">
+    <td>{{access.access_object_name}}</td>
+    <td>{{access.created_at}}</td>
+  </tr>
+</table>

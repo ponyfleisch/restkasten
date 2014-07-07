@@ -8,8 +8,9 @@ restkastenControllers.controller('UserListCtrl', function ($scope, User) {
 });
 
 
-restkastenControllers.controller('UserCtrl', function ($scope, $routeParams, User, UserAccessObject, AccessObject) {
+restkastenControllers.controller('UserCtrl', function ($scope, $routeParams, User, UserAccessObject, AccessObject, Access) {
     $scope.user = User.get({userId: $routeParams.userId});
+    $scope.accesses = Access.query({userId: $routeParams.userId});
 
     var refresh = function(){
         $scope.userAccessObjects = UserAccessObject.query({userId: $routeParams.userId});

@@ -18,3 +18,8 @@ restkastenServices.factory('AccessObject',
     }
 );
 
+restkastenServices.factory('Access',
+    function($resource){
+        return $resource('/api/users/:userId/accesses/:accessId', {accessId: '@id'}, {save: {method: 'PATCH'}});
+    }
+);
