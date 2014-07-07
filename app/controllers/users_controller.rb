@@ -14,6 +14,19 @@ class UsersController < RestController
     render :show
   end
 
+  def access_objects
+    set_request_user
+    set_current_user
+    @access_objects = @user.access_objects
+  end
+
+  def access_object
+    set_request_user
+    set_current_user
+
+    @access_object = @user.access_objects.find(params[:id])
+  end
+
   def create
     @user = User.new(user_params)
 
