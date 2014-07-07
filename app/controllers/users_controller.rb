@@ -1,10 +1,17 @@
 class UsersController < RestController
+  include CurrentUser
+
   def index
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def show_me
+    set_request_user
+    render :show
   end
 
   def create
@@ -20,7 +27,7 @@ class UsersController < RestController
 
   private
   def user_params
-    params.permit(:name, :password)
+    params.permit(:name, :password, :admin, :rfid)
   end
 
 

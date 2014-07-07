@@ -3,6 +3,12 @@ Rails.application.routes.draw do
     resources :entries, :purchases
   end
 
+
+  scope :me do
+    get '/' => 'users#show_me'
+    resources :entries, :purchases
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,4 +1,4 @@
 json.array!(@entries) do |entry|
   json.extract! entry, :id
-  json.url entry_url(entry, format: :json)
+  json.url user_entry_url(@user, entry)
 end

@@ -1,5 +1,6 @@
 class EntriesController < RestController
   include CurrentUser
+  before_action :set_request_user
   before_action :set_current_user
 
   def index
@@ -13,4 +14,24 @@ class EntriesController < RestController
 
     end
   end
+
+  def create
+    @entry = Entry.new(entry_params)
+
+    @entry.user = @user
+
+    if @entry.save
+      render :show, status: :created, location: @entry
+    else
+      render json: @entry.errors, status: :unprocessable_entity
+    end
+  end
+
+  private
+  def entry_params
+    params.permit(:door)
+  end
+
+
+
 end
