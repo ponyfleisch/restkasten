@@ -20,6 +20,11 @@ class AccessObjectsController < RestController
       render json: @access_object.errors, status: :unprocessable_entity
     end
   end
+  
+  def destroy
+    @access_object = AccessObject.find(params[:id])
+    @access_object.destroy
+  end
 
   private
   def access_object_params
