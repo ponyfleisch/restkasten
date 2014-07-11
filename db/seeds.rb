@@ -11,7 +11,7 @@ Purchase.delete_all
 AccessObject.delete_all
 User.delete_all
 
-users = User.create([{name: 'bert', password: 'yolo', admin: true, rfid: 12345}, {name: 'claudio', password: 'yolo', admin: true, rfid: 54321}])
+users = User.create([{name: 'bert', password: 'yolo', admin: true, rfid: 10425129}, {name: 'claudio', password: 'yolo', admin: true, rfid: 54321}])
 
 access_objects = AccessObject.create([{name: 'WC', users: users}, {name: 'Haupteingang', users: [users.first]}, {name: 'Fraese', users: [users.last]}])
 
