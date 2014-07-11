@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707141335) do
+ActiveRecord::Schema.define(version: 20140711142122) do
 
   create_table "access_objects", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "onoff"
   end
 
   create_table "access_objects_users", id: false, force: true do |t|
@@ -27,6 +28,15 @@ ActiveRecord::Schema.define(version: 20140707141335) do
   create_table "accesses", force: true do |t|
     t.integer  "user_id"
     t.integer  "access_object_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "onoff"
+    t.boolean  "success"
+  end
+
+  create_table "buyables", force: true do |t|
+    t.integer  "price"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

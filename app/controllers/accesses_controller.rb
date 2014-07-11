@@ -16,11 +16,15 @@ class AccessesController < RestController
   end
 
   def create
-    raise "No access" unless @user.access_objects.include?(AccessObject.find(params[:access_object_id]))
-
     @access = Access.new(access_params)
 
     @access.user = @user
+    
+    if (@user.access_objects.include?(AccessObject.find(params[:access_object_id]))) || (params[:onoff] == '0')
+      @access.success = true
+    else
+      @access.success = false
+    end
 
     if @access.save
       render :show, status: :created, location: @access
@@ -31,7 +35,7 @@ class AccessesController < RestController
 
   private
   def access_params
-    params.permit(:access_object_id)
+    params.permit(:access_object_id, :onoff)
   end
 
 
