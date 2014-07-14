@@ -19,7 +19,9 @@ Rails.application.routes.draw do
       get 'access_objects/:id', :to => "users#access_object", :as => :user_access_object
     end
 
-    resources :access_objects
+    resources :access_objects do
+      get 'accesses', :to => "access_objects#accesses", :as => :access_object_accesses
+    end
   end
 
 
