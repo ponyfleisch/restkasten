@@ -23,3 +23,9 @@ restkastenServices.factory('Access',
         return $resource('/api/users/:userId/accesses/:accessId', {accessId: '@id'}, {save: {method: 'PATCH'}});
     }
 );
+
+restkastenServices.factory('AccessObjectAccess',
+    function($resource){
+        return $resource('/api/access_objects/:objectId/accesses/', {save: {method: 'PATCH'}});
+    }
+);

@@ -43,3 +43,13 @@ restkastenControllers.controller('UserCtrl', function ($scope, $routeParams, Use
     }
 });
 
+
+restkastenControllers.controller('AccessObjectListCtrl', function ($scope, AccessObject) {
+    $scope.accessObjects = AccessObject.query();
+    $scope.orderProp = 'id';
+});
+
+restkastenControllers.controller('AccessObjectCtrl', function ($scope, $routeParams, AccessObject, AccessObjectAccess) {
+    $scope.accessObject = AccessObject.get({objectId: $routeParams.objectId});
+    $scope.accesses = AccessObjectAccess.query({objectId: $routeParams.objectId});
+});
