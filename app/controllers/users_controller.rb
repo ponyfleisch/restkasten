@@ -62,7 +62,16 @@ class UsersController < RestController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
-
+  
+  def update
+    @user = User.find(params[:id])
+    
+    if @user.update_attributes(user_params)
+      render :show, status: :created, location: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
 
   private
   def user_params
