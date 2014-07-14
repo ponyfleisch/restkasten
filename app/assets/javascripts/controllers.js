@@ -43,3 +43,46 @@ restkastenControllers.controller('UserCtrl', function ($scope, $routeParams, Use
     }
 });
 
+
+restkastenControllers.controller('AccObjListCtrl', function ($scope, AccessObject) {
+    $scope.access_objects = AccessObject.query();
+
+    $scope.orderProp = 'id';
+
+});
+
+restkastenControllers.controller('AccObjCtrl', function ($scope, $routeParams, AccessObject, Access) {
+    $scope.access_object = AccessObject.get({objectId: $routeParams.aoId});
+    $scope.accesses = $scope.access_object.Accesses;
+    //Access.query({objectId: $routeParams.aoId});
+
+    var refresh = function(){
+        $scope.access_object = AccessObject.get({objectId: $routeParams.aoId});
+	$scope.accesses = AccessObject.query({objectId: $routeParams.aoId});
+    };
+
+    refresh();
+
+    $scope.filteredAccessObjects = function(){
+        var uObjects = $scope.userAccessObjects.map(function(o){ return o['id']; });
+
+        var filteredObjects = $scope.accessObjects.filter(function(o){
+            if(uObjects.indexOf(o.id) == -1) return true;
+            else return false;
+        });
+
+        return filteredObjects;
+    };
+
+    $scope.addToUserAccessObjects = function(accessObject){
+        UserAccessObject.add({access_object_id: accessObject.id, user_id: $routeParams.userId}, function(){
+            refresh();
+        });
+    };
+
+    $scope.removeFromUserAccessObjects = function(accessObject){
+        UserAccessObject.remove({objectId: accessObject.id, userId: $routeParams.userId}, function(){
+            refresh();
+        });
+    }
+});

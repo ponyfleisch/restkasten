@@ -42,6 +42,14 @@ restkastenApp.config(['$routeProvider', '$locationProvider',
                 templateUrl: '/template/user',
                 controller: 'UserCtrl'
             }).
+	    when('/access_objects', {
+	        templateUrl: '/template/accobjlist',
+		controller: 'AccObjListCtrl'
+	    }).
+	    when('/access_objects/:aoId', {
+	        templateUrl: '/template/accobj',
+		controller: 'AccObjCtrl'
+	    }).
             otherwise({
                 redirectTo: '/users'
             });
