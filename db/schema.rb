@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20140711142122) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "onoff"
   end
 
   create_table "access_objects_users", id: false, force: true do |t|

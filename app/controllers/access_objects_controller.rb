@@ -26,6 +26,10 @@ class AccessObjectsController < RestController
     @access_object.destroy
   end
 
+  def accesses
+    @access_object = AccessObject.find(params[:access_object_id])
+  end
+
   private
   def access_object_params
     params.permit(:name)
