@@ -17,24 +17,24 @@ RFID: {{user.rfid}}
 
 <table class="table table-striped">
   <tr>
+    <th style="width:30px"></th>
     <th>object</th>
-    <th>on/off</th>
-    <th>success</th>
+    <th></th>
     <th>time</th>
   </tr>
   <tr ng-repeat="access in accesses">
-    <td>{{access.access_object_name}}</td>
     <td><div ng-if="access.onoff == true">
       <span class="glyphicon glyphicon-play" style="color: green"></span>
     </div>
     <div ng-if="access.onoff == false">
       <span class="glyphicon glyphicon-stop" style="color: red"></span>
     </div></td>
+    <td><a ng-href="/access_objects/{{access.access_object_id}}">{{access.access_object_name}}</a>    
     <td><div ng-if="access.success == true">
-      <span class="glyphicon glyphicon-ok" style="color: green"></span>
+      <span class="glyphicon glyphicon-ok" style="color: green; float: right"></span>
     </div>
     <div ng-if="access.success == false">
-      <span class="glyphicon glyphicon-remove" style="color: red"></span>
+      <span class="glyphicon glyphicon-remove" style="color: red; float: right"></span>
     </div></td>
     <td>{{access.created_at}}</td>
   </tr>
