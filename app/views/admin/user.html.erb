@@ -1,6 +1,17 @@
-<h1>details for {{user.name}}</h1>
-RFID: {{user.rfid}}
+<h1>{{user.name}}</h1>
 
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon">RFID:</span>
+      <input type="text" class="form-control" ng-model="user.rfid">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="user.$save(); refresh();">update</button>
+      </span>
+    </div>
+  </div>
+</div>
+  
 <h2>access objects</h2>
 <div class="row">
   <div class="col-md-6">
@@ -15,27 +26,35 @@ RFID: {{user.rfid}}
 
 <h2>access log</h2>
 
-<table class="table table-striped">
+<table class="table table-striped table-condensed">
   <tr>
-    <th style="width:30px"></th>
-    <th>object</th>
-    <th></th>
-    <th>time</th>
+    <th class="col-md-1"></th>
+    <th class="col-md-5">object</th>
+    <th class="col-md-1"></th>
+    <th class="col-md-8">time</th>
   </tr>
   <tr ng-repeat="access in accesses">
-    <td><div ng-if="access.onoff == true">
-      <span class="glyphicon glyphicon-play" style="color: green"></span>
-    </div>
-    <div ng-if="access.onoff == false">
-      <span class="glyphicon glyphicon-stop" style="color: red"></span>
-    </div></td>
-    <td><a ng-href="/access_objects/{{access.access_object_id}}">{{access.access_object_name}}</a>    
-    <td><div ng-if="access.success == true">
-      <span class="glyphicon glyphicon-ok" style="color: green; float: right"></span>
-    </div>
-    <div ng-if="access.success == false">
-      <span class="glyphicon glyphicon-remove" style="color: red; float: right"></span>
-    </div></td>
+    <td>
+      <div ng-if="access.onoff == true">
+        <span class="glyphicon glyphicon-play pull-left" style="color: green"></span>
+      </div>
+      <div ng-if="access.onoff == false">
+        <span class="glyphicon glyphicon-stop pull-left" style="color: red"></span>
+      </div>
+    </td>
+    <td>
+      <a ng-href="/access_objects/{{access.access_object_id}}">{{access.access_object_name}}</a>
+    </td>
+    <td>
+      <div ng-if="access.success == true">
+        <span class="glyphicon glyphicon-ok" style="color: green; float: right"></span>
+      </div>
+      <div ng-if="access.success == false">
+        <span class="glyphicon glyphicon-remove" style="color: red; float: right"></span>
+      </div>
+    </td>
     <td>{{access.created_at}}</td>
   </tr>
 </table>
+
+
