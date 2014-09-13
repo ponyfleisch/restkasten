@@ -1,3 +1,16 @@
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon">RFID:</span>
+      <input type="text" class="form-control" ng-model="newUser.name">
+      <input type="text" class="form-control" ng-model="newUser.password">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="saveUser()">update</button>
+      </span>
+    </div>
+  </div>
+</div>
+
 <h1>user list</h1>
 <table class="table table-striped">
   <tr>
@@ -13,7 +26,7 @@
       <div ng-if="user.admin == true">
         <button class="btn btn-danger" ng-click="user.admin = false; user.$save()">de-admin</button>
       </div>
-      <div ng-if="user.admin == false">
+      <div ng-if="user.admin == false || user.admin == null">
         <button class="btn btn-success" ng-click="user.admin = true; user.$save()">make admin</button>
       </div>
     </td>

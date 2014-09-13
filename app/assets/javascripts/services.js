@@ -2,7 +2,7 @@ var restkastenServices = angular.module('restkastenServices', ['ngResource']);
 
 restkastenServices.factory('User',
     function($resource){
-        return $resource('/api/users/:userId', {userId:'@id'}, {save: {method: 'PATCH'}});
+        return $resource('/api/users/:userId', {userId:'@id'}, {save: {method: 'PATCH'}, add: {method: 'POST'}});
     }
 );
 

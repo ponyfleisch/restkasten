@@ -2,6 +2,14 @@ var restkastenControllers = angular.module('restkastenControllers', []);
 
 restkastenControllers.controller('UserListCtrl', function ($scope, User) {
     $scope.users = User.query();
+  
+    $scope.newUser = {};
+  
+    $scope.saveUser = function(){
+        User.add($scope.newUser, function(){
+            $scope.users = User.query();
+        });
+    };
 
     $scope.orderProp = 'id';
 
